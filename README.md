@@ -47,3 +47,11 @@ npm run build    # writes the static site to dist/
 ```
 
 Upload/deploy the contents of `dist/` (it includes `CNAME`, `404.html` and redirect pages for all old URLs).
+
+### Automatic deploy
+
+`.github/workflows/deploy.yml` builds and publishes the site on every push to `main`
+(or manually from the Actions tab). One-time setup in the GitHub repo:
+
+1. Settings → Pages → Build and deployment → Source: **GitHub Actions**
+2. Settings → Pages → Custom domain: enter the domain (with Actions deploys, GitHub reads it from here, not from the `CNAME` file)
