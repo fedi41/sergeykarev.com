@@ -30,9 +30,6 @@ img { max-width: 100%; display: block; }
   gap: 12px 32px;
   border-bottom: 1px solid var(--line);
 }
-.identity { display: flex; align-items: center; gap: 12px; }
-.logo { display: block; line-height: 0; }
-.logo img { width: 40px; height: 40px; }
 .brand { font-size: 20px; font-weight: 600; letter-spacing: .02em; text-decoration: none; }
 .menu { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 15px; }
 .menu a { text-decoration: none; color: var(--muted); }
