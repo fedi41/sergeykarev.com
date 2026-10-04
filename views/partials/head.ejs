@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="<%= lang %>">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= path === '/' ? site.name + ' — sculptor' : page.title + ' — ' + site.name %></title>
+  <% if (page.description) { %><meta name="description" content="<%= page.description %>"><% } %>
+  <link rel="canonical" href="https://<%= site.domain %><%= path %>">
+  <link rel="icon" type="image/png" href="/images/logo.png">
+  <link rel="apple-touch-icon" href="/images/logo.png">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="<%= lang === 'ru' ? '/ru/' : '/' %>"><%= lang === 'ru' ? 'Сергей Карев' : site.name %></a>
+  <nav class="menu" aria-label="Main">
+    <% for (const s of site.sections) { %>
+      <a href="<%= urlFor(s.slug) %>"<% if (path === urlFor(s.slug)) { %> aria-current="page"<% } %>><%= lang === 'ru' ? s.ru : s.en %></a>
+    <% } %>
+    <a href="/cv/"<% if (path === '/cv/') { %> aria-current="page"<% } %>>CV</a>
+    <% if (lang === 'ru') { %><a href="/" lang="en">English</a><% } else { %><a href="/ru/" lang="ru">Русский</a><% } %>
+  </nav>
+</header>
+<main>

@@ -1,0 +1,16 @@
+<%- include('partials/head') %>
+<% const intro = lang === 'en' ? page.blocks.find((b) => b.type === 'text') : null;
+   const hero = page.blocks.find((b) => b.type === 'image'); %>
+<section class="home">
+  <div class="home-text">
+    <h1><%= page.title %></h1>
+    <% if (intro) { %><p class="statement"><%- intro.html %></p><% } %>
+    <ul class="sections">
+      <% for (const s of site.sections) { %>
+        <li><a href="<%= urlFor(s.slug) %>"><%= lang === 'ru' ? s.ru : s.en %></a></li>
+      <% } %>
+    </ul>
+  </div>
+  <% if (hero) { %><img class="hero" src="/images/<%= hero.src %>" alt="Sculpture by <%= site.name %>"><% } %>
+</section>
+<%- include('partials/foot') %>
