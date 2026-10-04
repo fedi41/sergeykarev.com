@@ -1,0 +1,27 @@
+<% for (const b of blocks) { %>
+  <% if (b.type === 'text') { %>
+    <div class="text"><%- b.html %></div>
+  <% } else if (b.type === 'image') { %>
+    <figure class="single"><a href="/images/<%= b.src %>" data-lightbox="<%= page.slug %>"><img src="/images/<%= b.src %>" alt="<%= page.title %>" loading="lazy"></a></figure>
+  <% } else if (b.type === 'gallery') { %>
+    <div class="gallery">
+      <% for (const im of b.images) { %>
+        <a href="/images/<%= im.full %>" data-lightbox="<%= page.slug %>"><img src="/images/<%= im.thumb %>" alt="<%= page.title %>" loading="lazy"></a>
+      <% } %>
+    </div>
+  <% } else if (b.type === 'video') { %>
+    <div class="video">
+      <iframe src="<%= b.youtube ? 'https://www.youtube-nocookie.com/embed/' + b.youtube : b.src %>" title="Video" loading="lazy" allowfullscreen></iframe>
+    </div>
+  <% } else if (b.type === 'cards') { %>
+    <div class="cards">
+      <% for (const c of b.items) { const tag = c.href ? 'a' : 'div'; %>
+        <<%= tag %> class="card"<% if (c.href) { %> href="<%= c.href %>"<% } %>>
+          <% if (c.image) { %><img src="/images/<%= c.image %>" alt="<%= c.title %>" loading="lazy"><% } %>
+          <% if (c.title) { %><h3><%= c.title %></h3><% } %>
+          <% if (c.text) { %><p><%- c.text.replace(/<\/?a[^>]*>/g, '') %></p><% } %>
+        </<%= tag %>>
+      <% } %>
+    </div>
+  <% } %>
+<% } %>
